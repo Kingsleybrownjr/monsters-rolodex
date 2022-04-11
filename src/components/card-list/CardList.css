@@ -1,0 +1,21 @@
+.card-list {
+    border: 1px solid rgb(100, 100, 208);
+    height: 20rem;
+    width: 17rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-list:hover {
+    background-color: rgb(94, 93, 93);
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 750px) {
+    .card-list {
+        width: 100%;
+    }
+}

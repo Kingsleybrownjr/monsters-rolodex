@@ -1,0 +1,15 @@
+.card {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 1rem;
+    column-gap: 1remf;
+    color: #fff;
+}
+
+@media screen and (max-width: 750px) {
+    .card {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+}

@@ -1,25 +1,42 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Card from './components/card/Card';
+import SearchBox from './components/search-box/SearchBox';
 
+const App = () => {
+	const [monsters, setMonsters] = useState([]);
+	const [searchField, setSearchField] = useState('');
+
+	useEffect(() => {
+		getMonsters();
+	}, []);
+
+	const getMonsters = async () => {
+		const response = await fetch('https://jsonplaceholder.typicode.com/users');
+		const data = await response.json();
+
+		setMonsters(data);
+	};
+
+	const onSearchChange = e => setSearchField(e.target.value.toLowerCase());
+
+	return (
+		<div className="container">
+			<h1 className="page-title">Monsters Inc.</h1>
+
+			<div className='search-element'>
+				<SearchBox
+					value={searchField}
+					onChangeHandler={onSearchChange}
+					type="search"
+					placeholder="Search monsters..."
+				/>
+			</div>
+
+			<Card monsters={monsters} searchField={searchField} />
+		</div>
+	);
+};
 export default App;
